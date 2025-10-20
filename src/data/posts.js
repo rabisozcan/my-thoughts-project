@@ -338,7 +338,7 @@ Atalarımız için ani ses = yırtıcı hayvan veya düşman demekti.
 Saniyeler içinde tepki verenler hayatta kalabildi.  
 
 
-Kısaca DNA'mızda onlarca "default ayar" var ve hepsi de bir noktada biiz korumak için 
+Kısaca DNA'mızda onlarca "default ayar" var ve hepsi de bir noktada bizi korumak için 
 
 
 ---
@@ -472,7 +472,7 @@ Boşluk bile yok, çünkü sen o alana hiç bakmamışsın.
 ## Matematikte Null vs Undefined Kavramları
 
 - **Null** = ∅ (Boş küme) → Var ama içi boş, işlem yapılabilir  
-- **Undefined** = 0/0 gibi (Tanımsız) → Var mı yok mu belli değil, işlem yapılamaz  
+- **Undefined** = 1/0 gibi (Tanımsız) → Var mı yok mu belli değil, işlem yapılamaz  
 
 Yani null bir potansiyel, undefined ise keşfedilmemiş bir soru işareti.  
 
@@ -1253,7 +1253,7 @@ Toplumun sana yazdığı const’ları let yapabilirsin.
 ---
 
 **Yazılımcılar için:** const kullan ama dogmatik olma, let gerektiğinde esnektir  
-**Herkes için:** Dünkü sen ile bugünkü sen arasında fark varları düşün. 
+**Herkes için:** Dünkü sen ile bugünkü sen arasında farkları düşün. 
 **Bugünkü soru:** "Sen hep böylesin" dendiğinde ne hissediyorsun?
 `
 

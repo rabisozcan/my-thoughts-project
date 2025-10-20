@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Card, Progress, Typography,  } from "antd";
+import { Button, Card, Progress, Typography } from "antd";
 import { test } from "../data/test";
 
 const { Title, Paragraph } = Typography;
@@ -15,12 +15,14 @@ const TestPage = () => {
 
   if (!currentTest) return <h1>Test bulunamadı 😢</h1>;
 
-  const handleAnswer = (optionScore, index) => {
-    if (selectedOption !== null) return;
+  const handleAnswer = (index) => {
+    
     setSelectedOption(index);
   };
 
   const nextQuestion = () => {
+    if (selectedOption === null) return; // Seçim yapılmadan geçemez
+    
     const optionScore = currentTest.questions[currentQ].options[selectedOption].score;
     const newScore = score + optionScore;
 
@@ -49,15 +51,13 @@ const TestPage = () => {
 
         <Card style={{ border: "1px solid #f0f0f0", borderRadius: "12px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)", marginBottom: "2rem" }} bodyStyle={{ padding: "2rem" }}>
           <Title level={3} style={{ color: "#273B94", marginBottom: "1rem" }}>{result.label}</Title>
-          <Paragraph style={{ fontSize: "1.1rem", lineHeight: "1.8", color: "#444", marginBottom: "1.5rem" }}>{result.desc}</Paragraph>
+          <Paragraph style={{ fontSize: "1.1rem", lineHeight: "1.8", color: "#444", marginBottom: "1.5rem", whiteSpace: "pre-line" }}>{result.desc}</Paragraph>
           <Paragraph style={{ color: "#666", fontSize: "1rem" }}>Toplam Puanın: <strong style={{ color: "#273B94" }}>{result.totalScore}</strong> / {currentTest.questions.length * 3}</Paragraph>
         </Card>
 
         <Button type="primary" size="large" style={{ backgroundColor: "#273B94", border: "none", borderRadius: "8px", fontWeight: "600", padding: "0 2rem", height: "40px", marginBottom: "1rem" }} onClick={() => window.location.reload()}>
           Testi Tekrarla
         </Button>
-
-        
       </div>
     );
   }
@@ -89,12 +89,11 @@ const TestPage = () => {
               key={index}
               block
               size="large"
-              onClick={() => handleAnswer(opt.score, index)}
-              disabled={selectedOption !== null}
+              onClick={() => handleAnswer(index)}
               style={{
                 backgroundColor: selectedOption === index ? "#273B94" : "#F8F9FF",
                 color: selectedOption === index ? "white" : "#273B94",
-                border: "2px solid #E8ECFF",
+                border: selectedOption === index ? "2px solid #273B94" : "2px solid #E8ECFF",
                 borderRadius: "8px",
                 fontWeight: "500",
                 height: "auto",
@@ -102,8 +101,20 @@ const TestPage = () => {
                 textAlign: "left",
                 whiteSpace: "normal",
                 minHeight: "60px",
-                cursor: selectedOption === null ? "pointer" : "default",
+                cursor: "pointer",
                 transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                if (selectedOption !== index) {
+                  e.currentTarget.style.backgroundColor = "#EEF1FF";
+                  e.currentTarget.style.borderColor = "#273B94";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (selectedOption !== index) {
+                  e.currentTarget.style.backgroundColor = "#F8F9FF";
+                  e.currentTarget.style.borderColor = "#E8ECFF";
+                }
               }}
             >
               {opt.text}
@@ -112,8 +123,21 @@ const TestPage = () => {
         </div>
 
         {selectedOption !== null && (
-          <Button type="primary" style={{ marginTop: "1.5rem", backgroundColor: "#273B94", border: "none", borderRadius: "8px" }} onClick={nextQuestion}>
-            {currentQ + 1 === currentTest.questions.length ? "Sonucu Göster" : "Sonraki Soru"}
+          <Button 
+            type="primary" 
+            size="large"
+            block
+            style={{ 
+              marginTop: "1.5rem", 
+              backgroundColor: "#273B94", 
+              border: "none", 
+              borderRadius: "8px",
+              fontWeight: "600",
+              height: "48px"
+            }} 
+            onClick={nextQuestion}
+          >
+            {currentQ + 1 === currentTest.questions.length ? "Sonucu Göster" : "Sonraki Soru →"}
           </Button>
         )}
       </Card>
