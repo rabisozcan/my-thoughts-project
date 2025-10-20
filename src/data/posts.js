@@ -1253,7 +1253,7 @@ Toplumun sana yazdığı const’ları let yapabilirsin.
 ---
 
 **Yazılımcılar için:** const kullan ama dogmatik olma, let gerektiğinde esnektir  
-**Herkes için:** Dünkü sen ile bugünkü sen arasında farkları düşün. 
+**Herkes için:** Dünkü sen ile bugünkü sen arasında farkları düşün.  
 **Bugünkü soru:** "Sen hep böylesin" dendiğinde ne hissediyorsun?
 `
 
